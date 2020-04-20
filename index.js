@@ -8,13 +8,13 @@ class App extends Component {
     super();
     this.state = {
       title: "Mr.",
-      name: 'React',
+      name: 'ReactJS',
       email: "nagesh@gmail.com",
       aboutMe: "yes",
       agree: true
     };
   }
-  changeName = (e) => {
+  /*changeName = (e) => {
     this.setState({
       name: e.target.value
     })
@@ -39,21 +39,35 @@ class App extends Component {
       agree : e.target.checked
     })
   }
-  submitForm = (e) => {
-    let value = e.target.value
+  submitForm = (e) => {    
+    console.log( this.state )
+  }*/
+
+  changeHandler = (e) => {
     let key = e.target.name
+    let value = e.target.value
+    let checked = e.target.checked
+    let isCheckBox =  e.target.type === "checkbox"
+    this.setState({
+      [key]: isCheckBox ? checked : value
+    })    
+  }
+
+  submitForm = (e) => {    
     console.log( this.state )
   }
   render() {
     return (
       <div>
-        <Hello name={this.state.name} />
-        <table width="100%" border="1" cellPadding="5" cellSpacing="0" style={{ borderCcollapse: "collapse" }}>
+        <Hello pageTitle={this.state.name} />
+        <table width="100%" border="1" cellPadding="5" cellSpacing="0">
           <tbody>
               <tr>
                   <th>Title</th> 
                   <td>
-                    <select name="title" value={ this.state.title } onChange={ this.changeTitle }>
+                    <select name="title" 
+                    value={ this.state.title } 
+                    onChange={ this.changeHandler }>
                     <option value="Sri">Sri</option>
                     <option value="Mr.">Mr.</option>
                     <option value="Mrs.">Mrs.</option>
@@ -64,28 +78,28 @@ class App extends Component {
                   <th>Name</th> 
                   <td><input name="name" type="text" 
                   value={ this.state.name }
-                  onChange={ this.changeName } /></td>
+                  onChange={ this.changeHandler } /></td>
               </tr>
               <tr>
                   <th>Email</th> 
                   <td><input name="email" type="text" 
                   value={ this.state.email }
-                  onChange={ this.changeEmail } /></td>
+                  onChange={ this.changeHandler } /></td>
               </tr>
               <tr>
                   <th>About Me</th> 
                   <td><textarea name="aboutMe"
                   value={ this.state.aboutMe } 
-                  onChange={ this.changeAbout } ></textarea></td>
+                  onChange={ this.changeHandler } ></textarea></td>
               </tr>
               <tr>
                   <th>I Agree the above</th> 
                   <td><input name="agree" type="checkbox" 
                   checked={ this.state.agree }
-                  onChange={ this.agreeTerms } /></td>
+                  onChange={ this.changeHandler } /></td>
               </tr>
               <tr>
-                  <td colspan="2" style={{textAlign: "center"}}>
+                  <td colSpan="2" style={{textAlign: "center"}}>
                   <input type="submit" value="Submit"
                   onClick={ this.submitForm } /> </td>
               </tr>                     
