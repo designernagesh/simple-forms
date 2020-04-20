@@ -39,46 +39,48 @@ class App extends Component {
       agree : e.target.checked
     })
   }
-  submitForm = () => {
+  submitForm = (e) => {
+    let value = e.target.value
+    let key = e.target.name
     console.log( this.state )
   }
   render() {
     return (
       <div>
         <Hello name={this.state.name} />
-        <table width="100%" border="0" cellPadding="5" cellSpacing="0">
+        <table width="100%" border="1" cellPadding="5" cellSpacing="0" style={{ borderCcollapse: "collapse" }}>
           <tbody>
               <tr>
                   <th>Title</th> 
                   <td>
-                    <select value={ this.state.title } onChange={ this.changeTitle }>
+                    <select name="title" value={ this.state.title } onChange={ this.changeTitle }>
                     <option value="Sri">Sri</option>
                     <option value="Mr.">Mr.</option>
-                    <option value="Mrs.">Mrs.</option>                    
+                    <option value="Mrs.">Mrs.</option>
                     </select>
                   </td>
               </tr>
               <tr>
                   <th>Name</th> 
-                  <td><input type="text" 
+                  <td><input name="name" type="text" 
                   value={ this.state.name }
                   onChange={ this.changeName } /></td>
               </tr>
               <tr>
                   <th>Email</th> 
-                  <td><input type="text" 
+                  <td><input name="email" type="text" 
                   value={ this.state.email }
                   onChange={ this.changeEmail } /></td>
               </tr>
               <tr>
                   <th>About Me</th> 
-                  <td><textarea 
+                  <td><textarea name="aboutMe"
                   value={ this.state.aboutMe } 
                   onChange={ this.changeAbout } ></textarea></td>
               </tr>
               <tr>
                   <th>I Agree the above</th> 
-                  <td><input type="checkbox" 
+                  <td><input name="agree" type="checkbox" 
                   checked={ this.state.agree }
                   onChange={ this.agreeTerms } /></td>
               </tr>
